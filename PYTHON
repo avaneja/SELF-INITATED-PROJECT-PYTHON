@@ -1,0 +1,64 @@
+:
+
+World Cup T20 Data Analysis: A Deep Dive
+As a cricket enthusiast, I've always been fascinated by the intricacies of the game. With the ICC World Cup T20 dataset, I decided to dig in and see what insights I could uncover. In this project, I'll walk you through my analysis and findings.
+
+Getting Started
+To begin, I loaded the dataset into my Python environment using pandas. The dataset contains information on team performance, player stats, and match results.
+
+
+import pandas as pd
+
+# Load the dataset
+df = pd.read_csv('world_cup_t20.csv')
+
+
+Exploring the Data
+Before diving into the analysis, I took a closer look at the dataset to understand its structure and content.
+
+
+print(df.head())
+print(df.info())
+print(df.describe())
+
+
+Team Performance: A Closer Look
+One aspect that caught my attention was team performance. I grouped the data by team and counted the number of wins and losses. The results were fascinating!
+
+
+team_performance = df.groupby('Team')['Result'].value_counts().unstack()
+team_performance.plot(kind='bar', figsize=(10, 6))
+plt.title('Team Performance')
+plt.xlabel('Team')
+plt.ylabel('Number of Wins/Losses')
+plt.show()
+
+
+Player Performance: The Stars Shine Bright
+Next, I analyzed player performance by grouping the data by player and calculating the total runs scored. The top batsmen were no surprise, but it was interesting to see the range of scores.
+
+
+player_df = pd.read_csv('player_stats.csv')
+top_batsmen = player_df.groupby('Player')['Runs_Scored'].sum().sort_values(ascending=False).head(10)
+top_batsmen.plot(kind='bar', figsize=(10, 6))
+plt.title('Top Batsmen')
+plt.xlabel('Player')
+plt.ylabel('Total Runs')
+plt.show()
+
+
+Match Analysis: The Thrill of the Game
+Finally, I looked at match results to see if there were any patterns or trends. The pie chart below shows the distribution of wins and losses.
+
+
+match_results = df['Result'].value_counts()
+match_results.plot(kind='pie', autopct='%1.1f%%')
+plt.title('Match Results')
+plt.show()
+
+
+What Did We Learn?
+From this analysis, we gained insights into team and player performance, as well as match outcomes. The findings can help us better understand the game and make more informed predict
+
+
+
